@@ -6,6 +6,7 @@ Formatted Number Input Component for @vs-form/tailwind
 ```bash
 npm install --save @vs-form/tailwind
 npm install react-number-format --save
+npm install --save @vs-form/numberformat
 ```
 
 ## Usage
