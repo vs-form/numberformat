@@ -1,6 +1,6 @@
 {
   "name": "@vs-form/numberformat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Formatted Number Input Component for @vs-form/tailwind",
   "author": "vs-form",
   "license": "MIT",
