@@ -10,7 +10,7 @@ export interface IFormattedNumberComponent extends IDataComponent {
 }
 
 export const NumberComp = (props: ElementProps) => {
-  const { sm, data, events, themeColor, addProps } = props
+  const { data, themeColor, addProps, validateOnBlur } = props
   const comp = (props.comp as unknown) as IFormattedNumberComponent
   comp.dataType = 'float'
 
@@ -50,28 +50,6 @@ export const NumberComp = (props: ElementProps) => {
     }
   }
 
-  const handleBlur = (event: any) => {
-    const oldError = sm.getError(comp) || ''
-    //@ts-ignore
-    const value = sm.getValue(comp)
-    const error = data.validate(value) || ''
-
-    if (error !== oldError) {
-      if (comp.parentComp && comp.parentComp.type === 'field') {
-        sm.RenderComponent(comp.parentComp)
-      } else {
-        //@ts-ignore
-        sm.RenderComponent(comp)
-      }
-    }
-
-    if (events().onBlur) {
-      events().onBlur({ sm, comp, event })
-    }
-
-  }
-
-
   const [fmtValue, setFmtValue] = React.useState(data.value())
 
   const handleChange = (values: any) => {
@@ -87,7 +65,7 @@ export const NumberComp = (props: ElementProps) => {
         {...m.styleInput}
         {...comp.options}
         value={fmtValue}
-        onBlur={(e: any) => handleBlur(e)}
+        onBlur={validateOnBlur}
         onValueChange={(value: number) => handleChange(value)}
         {...addProps()}
       />
